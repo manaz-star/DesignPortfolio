@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manaz Baptiste | Learning Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.portfolio-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #1a1612;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid #c8a96e;
+}
+
+.nav-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c8a96e;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgba(200,169,110,0.2);
+  white-space: nowrap;
+}
+
+.nav-tabs {
+  display: flex;
+  flex: 1;
+}
+
+.nav-tab {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 20px 28px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-align: left;
+  white-space: nowrap;
+  border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.nav-tab:nth-child(1) {
+  background: #6b4c1e;
+  color: #f5dfa0;
+}
+
+.nav-tab:nth-child(2) {
+  background: #2e3d31;
+  color: #a8c9ab;
+}
+
+.nav-tab:nth-child(3) {
+  background: #5a2218;
+  color: #e8a090;
+}
+
+.nav-tab:hover {
+  filter: brightness(1.2);
+}
+
+.nav-tab.active {
+  filter: brightness(1.4);
+  font-weight: 500;
+}
+
+.portfolio-section {
+  display: none;
+}
+
+.portfolio-section.active {
+  display: block;
+}
+
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f5f0e8;
+    --warm: #c8a96e;
+    --rust: #8b3a2a;
+    --sage: #4a5c4e;
+    --light: #e8e0d0;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 60px;
+    position: relative;
+  }
+
+  /* Top rule */
+  .top-rule {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 80px;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .rule-line {
+    flex: 1;
+    height: 1px;
+    background: var(--warm);
+  }
+
+  .rule-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+
+  /* Hero section */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 80px;
+  }
+
+  .hero-left {}
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 24px;
+    animation: fadeInUp 0.8s ease 0.1s both;
+  }
+
+  .name {
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+
+  .name em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .title-block {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--light);
+    animation: fadeInUp 0.8s ease 0.3s both;
+  }
+
+  .title-line {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--sage);
+    margin-bottom: 4px;
+  }
+
+  .subtitle-line {
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: #444;
+  }
+
+  /* Credentials sidebar */
+  .credentials {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 36px 32px;
+    animation: fadeInUp 0.8s ease 0.4s both;
+  }
+
+  .cred-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(200,169,110,0.3);
+  }
+
+  .cred-item {
+    margin-bottom: 20px;
+  }
+
+  .cred-school {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .cred-degree {
+    font-size: 13px;
+    font-weight: 300;
+    font-style: normal;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.5;
+  }
+  .cred-divider {
+    height: 1px;
+    background: rgba(200,169,110,0.15);
+    margin: 20px 0;
+  }
+
+  .cert-item {
+    margin-bottom: 12px;
+  }
+
+  .cert-dot {
+    display: none;
+  }
+
+  .cert-text {
+    font-size: 13px;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.5;
+  }
+  .cert-text strong {
+    font-weight: 700;
+    color: rgba(245,240,232,1);
+  }
+
+  /* Portfolio contents */
+  .contents-section {
+    margin-bottom: 70px;
+    animation: fadeInUp 0.8s ease 0.5s both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--warm);
+    letter-spacing: 2px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--light);
+  }
+
+  .portfolio-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .portfolio-item {
+    background: white;
+    padding: 28px 28px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s ease;
+    cursor: default;
+  }
+
+  .portfolio-item:hover {
+    border-left-color: var(--warm);
+  }
+
+  .item-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+  }
+
+  .item-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .item-desc {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: italic;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Expertise section */
+  .expertise-section {
+    margin-bottom: 70px;
+    animation: fadeInUp 0.8s ease 0.6s both;
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .expertise-card {
+    padding: 24px;
+    background: white;
+  }
+
+  .expertise-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .expertise-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .expertise-desc {
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Statement */
+  .statement-section {
+    background: var(--sage);
+    color: var(--paper);
+    padding: 48px 52px;
+    margin-bottom: 60px;
+    position: relative;
+    animation: fadeInUp 0.8s ease 0.7s both;
+  }
+
+  .statement-section::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 160px;
+    color: rgba(245,240,232,0.06);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .statement-text {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  .statement-text strong {
+    font-weight: 600;
+    font-style: normal;
+    color: var(--warm);
+  }
+
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 32px;
+    border-top: 1px solid var(--light);
+    animation: fadeInUp 0.8s ease 0.8s both;
+  }
+
+  .contact-block {}
+
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+  }
+
+  .contact-line {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .footer-badge {
+    text-align: right;
+  }
+
+  .badge-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .badge-year {
+    font-size: 36px;
+    font-weight: 300;
+    color: #4a5c4e;
+    line-height: 1;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media print {
+    body::before { display: none; }
+    .page { padding: 40px; }
+  }
+
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --ink: #1a1612; --paper: #f5f0e8; --warm: #c8a96e; --rust: #8b3a2a; --sage: #4a5c4e; --light: #e8e0d0; --white: #ffffff; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', serif; min-height: 100vh; }
+  .page { max-width: 900px; margin: 0 auto; padding: 70px 60px; }
+
+  .doc-header { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+  .doc-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
+  .doc-title { font-size: 42px; font-weight: 300; line-height: 1.15; letter-spacing: -0.5px; }
+  .doc-title em { font-style: italic; color: var(--rust); }
+  .doc-meta { text-align: right; }
+  .meta-item { margin-bottom: 10px; }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); display: block; margin-bottom: 4px; }
+  .meta-value { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  .glance-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 48px; }
+  .glance-card { background: var(--ink); color: var(--paper); padding: 20px 18px; }
+  .glance-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 10px; }
+  .glance-value { font-size: 14px; font-weight: 400; line-height: 1.4; }
+
+  .section { margin-bottom: 44px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--warm); letter-spacing: 2px; flex-shrink: 0; }
+  .section-title { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 3px; text-transform: uppercase; color: var(--ink); flex-shrink: 0; }
+  .section-rule { flex: 1; height: 1px; background: var(--light); }
+
+  .objective-block { background: var(--sage); color: var(--paper); padding: 28px 32px; margin-bottom: 20px; }
+  .objective-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 12px; }
+  .objective-text { font-size: 15px; font-weight: 300; font-style: italic; line-height: 1.7; }
+
+  .targets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .target-card { background: var(--white); padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start; }
+  .target-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--warm); flex-shrink: 0; margin-top: 2px; }
+  .target-text { font-size: 13px; font-weight: 400; line-height: 1.55; }
+
+  .questions-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .questions-list li { background: var(--white); padding: 14px 18px; font-size: 13px; font-style: italic; font-weight: 300; line-height: 1.5; display: flex; gap: 10px; align-items: flex-start; }
+  .q-mark { color: var(--rust); font-style: normal; font-weight: 600; flex-shrink: 0; }
+
+  .materials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .materials-card { background: var(--white); padding: 20px 22px; }
+  .materials-cat { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
+  .materials-list { list-style: none; }
+  .materials-list li { font-size: 12px; font-weight: 300; line-height: 1.6; padding: 4px 0; border-bottom: 1px solid var(--light); display: flex; gap: 8px; align-items: flex-start; }
+  .materials-list li:last-child { border-bottom: none; }
+  .mat-dot { color: var(--warm); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
+
+  .activity { margin-bottom: 20px; }
+  .activity-header { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; background: var(--ink); color: var(--paper); padding: 14px 20px; }
+  .activity-type { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); }
+  .activity-name { font-size: 16px; font-weight: 400; }
+  .activity-time { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(245,240,232,0.75); letter-spacing: 1px; white-space: nowrap; }
+  .activity-body { background: var(--white); padding: 24px; }
+  .activity-intro { font-size: 13px; font-style: italic; font-weight: 300; color: #555; line-height: 1.65; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--light); }
+
+  .activity-steps { list-style: none; counter-reset: steps; }
+  .activity-steps li { counter-increment: steps; display: flex; gap: 16px; margin-bottom: 13px; font-size: 13px; line-height: 1.6; align-items: flex-start; }
+  .activity-steps li::before { content: counter(steps, decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 9px; color: var(--warm); flex-shrink: 0; margin-top: 3px; letter-spacing: 1px; }
+
+  .instructor-note { background: #2a2520; border-left: 4px solid var(--warm); padding: 14px 18px; margin-top: 14px; font-size: 13px; font-style: italic; color: #d4c5a9; line-height: 1.7; }
+  .instructor-note strong { font-style: normal; color: var(--warm); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 14px; }
+  .scenario-card { background: var(--paper); padding: 16px 18px; border-left: 3px solid var(--sage); }
+  .scenario-label { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 6px; }
+  .scenario-text { font-size: 12px; line-height: 1.55; font-style: italic; }
+
+  .discussion-questions { list-style: none; margin-top: 14px; }
+  .discussion-questions li { font-size: 13px; font-style: italic; font-weight: 300; line-height: 1.55; padding: 10px 0; border-bottom: 1px solid var(--light); display: flex; gap: 12px; }
+  .discussion-questions li:last-child { border-bottom: none; }
+  .dq-icon { color: var(--rust); font-style: normal; flex-shrink: 0; }
+
+  .outcomes-block { background: var(--ink); color: var(--paper); padding: 32px 36px; }
+  .outcomes-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 20px; }
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .outcome-metric { font-size: 36px; font-weight: 600; color: var(--warm); line-height: 1; margin-bottom: 6px; font-family: 'DM Mono', monospace; letter-spacing: -1px; }
+  .outcome-desc { font-size: 12px; font-weight: 300; color: rgba(245,240,232,0.75); line-height: 1.5; }
+
+  .portfolio-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--light); display: flex; justify-content: space-between; align-items: center; }
+  .footer-credit { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); }
+  .footer-id { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--rust); }
+
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --ink: #1a1612; --paper: #f5f0e8; --warm: #c8a96e; --rust: #8b3a2a; --sage: #4a5c4e; --light: #e8e0d0; --white: #ffffff; --slate: #3a4a52; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Cormorant Garamond', serif; min-height: 100vh; }
+  .page { max-width: 960px; margin: 0 auto; padding: 70px 60px; }
+
+  /* Header */
+  .doc-header { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+  .doc-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
+  .doc-title { font-size: 42px; font-weight: 300; line-height: 1.15; letter-spacing: -0.5px; }
+  .doc-title em { font-style: italic; color: var(--rust); }
+  .doc-meta { text-align: right; }
+  .meta-item { margin-bottom: 10px; }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); display: block; margin-bottom: 4px; }
+  .meta-value { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  /* Glance strip */
+  .glance-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 48px; }
+  .glance-card { background: var(--ink); color: var(--paper); padding: 20px 18px; }
+  .glance-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 10px; }
+  .glance-value { font-size: 14px; font-weight: 400; line-height: 1.4; }
+
+  /* Section */
+  .section { margin-bottom: 44px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--warm); letter-spacing: 2px; flex-shrink: 0; }
+  .section-title { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 3px; text-transform: uppercase; color: var(--ink); flex-shrink: 0; }
+  .section-rule { flex: 1; height: 1px; background: var(--light); }
+
+  /* Overview block */
+  .overview-block { background: var(--sage); color: var(--paper); padding: 28px 32px; margin-bottom: 20px; }
+  .overview-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 12px; }
+  .overview-text { font-size: 15px; font-weight: 300; font-style: italic; line-height: 1.7; }
+
+  /* Objectives grid */
+  .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 4px; }
+  .obj-card { background: var(--white); padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start; }
+  .obj-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--warm); flex-shrink: 0; margin-top: 2px; }
+  .obj-text { font-size: 13px; font-weight: 400; line-height: 1.55; }
+
+  /* Slide cards */
+  .slide-card { margin-bottom: 24px; border: 1px solid var(--light); }
+
+  .slide-header { display: grid; grid-template-columns: auto 1fr auto; gap: 0; align-items: stretch; }
+  .slide-num-block { background: var(--rust); color: var(--paper); padding: 16px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 72px; }
+  .slide-num-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,240,232,0.6); margin-bottom: 4px; }
+  .slide-num-value { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 500; color: var(--paper); line-height: 1; }
+
+  .slide-title-block { background: var(--ink); color: var(--paper); padding: 16px 24px; display: flex; flex-direction: column; justify-content: center; }
+  .slide-type-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 6px; }
+  .slide-title { font-size: 20px; font-weight: 400; line-height: 1.2; }
+
+  .slide-time-block { background: var(--slate); color: var(--paper); padding: 16px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 80px; }
+  .slide-time-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,240,232,0.6); margin-bottom: 4px; }
+  .slide-time-value { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--paper); }
+
+  .slide-body { background: var(--white); display: grid; grid-template-columns: 1fr 1fr 1fr; }
+
+  .slide-col { padding: 20px 22px; border-right: 1px solid var(--light); }
+  .slide-col:last-child { border-right: none; }
+
+  .col-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); margin-bottom: 10px; display: block; }
+
+  .col-content { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--ink); }
+  .col-content p { margin-bottom: 10px; }
+  .col-content p:last-child { margin-bottom: 0; }
+
+  .col-content ul { list-style: none; }
+  .col-content ul li { padding: 5px 0; border-bottom: 1px solid var(--light); font-size: 12px; line-height: 1.5; display: flex; gap: 8px; }
+  .col-content ul li:last-child { border-bottom: none; }
+  .li-dot { color: var(--warm); flex-shrink: 0; }
+
+  /* Interaction tag */
+  .interaction-tag { display: inline-block; background: var(--rust); color: var(--paper); font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 8px; margin-bottom: 10px; }
+
+  .visual-box { background: var(--light); border: 1px dashed var(--warm); padding: 14px; margin-bottom: 10px; font-size: 12px; font-style: italic; color: #555; line-height: 1.5; text-align: center; }
+  .visual-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); display: block; margin-bottom: 6px; font-weight: 500; }
+
+  /* Branching slide special */
+  .branch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 10px; }
+  .branch-option { padding: 12px 14px; font-size: 12px; line-height: 1.5; }
+  .branch-a { background: rgba(74,92,78,0.12); border-left: 3px solid var(--sage); }
+  .branch-b { background: rgba(139,58,42,0.08); border-left: 3px solid var(--rust); }
+  .branch-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); display: block; margin-bottom: 5px; }
+  .branch-label.wrong { color: var(--rust); }
+
+  /* Knowledge check */
+  .kc-question { background: var(--paper); border: 1px solid var(--light); padding: 14px 16px; margin-bottom: 6px; font-size: 13px; font-style: italic; font-weight: 400; line-height: 1.55; }
+  .kc-question strong { font-style: normal; font-weight: 700; }
+  .kc-options { list-style: none; margin-bottom: 4px; }
+  .kc-options li { font-size: 12px; padding: 7px 10px 7px 32px; border-bottom: 1px solid var(--light); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+  .kc-options li:last-child { border-bottom: none; }
+  .kc-letter { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--warm); flex-shrink: 0; min-width: 16px; }
+  .correct { background: rgba(74,92,78,0.1); }
+  .correct .kc-letter { color: var(--sage); }
+
+  /* Outcomes */
+  .outcomes-block { background: var(--ink); color: var(--paper); padding: 32px 36px; }
+  .outcomes-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm); margin-bottom: 20px; }
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .outcome-metric { font-size: 36px; font-weight: 600; color: var(--warm); line-height: 1; margin-bottom: 6px; font-family: 'DM Mono', monospace; }
+  .outcome-desc { font-size: 12px; font-weight: 300; color: rgba(245,240,232,0.75); line-height: 1.5; }
+
+  /* Footer */
+  .portfolio-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--light); display: flex; justify-content: space-between; align-items: center; }
+  .footer-credit { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); }
+  .footer-id { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--rust); }
+
+</style>
+</head>
+<body>
+
+<nav class="portfolio-nav">
+  <div class="nav-brand">Manaz Baptiste</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('cover', this)">Cover</button>
+    <button class="nav-tab" onclick="showSection('sample-a', this)">Sample A &nbsp;·&nbsp; Lesson Plan</button>
+    <button class="nav-tab" onclick="showSection('sample-b', this)">Sample B &nbsp;·&nbsp; Storyboard</button>
+  </div>
+</nav>
+
+<div id="cover" class="portfolio-section active">
+
+<div class="page">
+
+  <div class="top-rule">
+    <div class="rule-line"></div>
+    <div class="rule-label">Learning Design Portfolio</div>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">Instructional Design &amp; Content Development</div>
+      <div class="name">Manaz<br><em>Baptiste</em></div>
+      <div class="title-block">
+        <div class="title-line">Curriculum Designer &nbsp;·&nbsp; Instructional Strategist<br>Learning Systems Architect</div>
+        <div class="subtitle-line">Designing for retention is not just something I do. It is how I am trained to think.</div>
+      </div>
+    </div>
+
+    <div class="credentials">
+      <div class="cred-header">Academic Foundation</div>
+
+      <div class="cred-item">
+        <div class="cred-school">University of Pennsylvania</div>
+        <div class="cred-degree">M.S.Ed &nbsp;·&nbsp; <em>Education, Entrepreneurship &amp; Technology</em><br>Graduate School of Education</div>
+      </div>
+
+      <div class="cred-divider"></div>
+
+      <div class="cert-item">
+        <div class="cert-text">Certified Daring Way™ Facilitator (CDWF)<br><strong>Brené Brown Education &amp; Research Group</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contents-section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Portfolio Contents</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="portfolio-items">
+      <div class="portfolio-item">
+        <div class="item-tag">Sample A &nbsp;·&nbsp; Lesson Plan</div>
+        <div class="item-title">Banking &amp; Checking Accounts</div>
+        <div class="item-desc">Full instructor lesson plan with multi-modal activities, roleplay simulation, and structured knowledge assessment. Designed for high school youth in a financial literacy program.</div>
+      </div>
+
+      <div class="portfolio-item">
+        <div class="item-tag">Sample B &nbsp;·&nbsp; eLearning Storyboard</div>
+        <div class="item-title">Turning a No Into a Not Yet</div>
+        <div class="item-desc">Eight-slide eLearning storyboard for a sales associate audience. Includes learning objectives, voiceover script, visual direction, and branching scenario interaction.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="expertise-section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Areas of Practice</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="expertise-icon">✦</div>
+        <div class="expertise-name">Instructional Design</div>
+        <div class="expertise-desc">Learning objective architecture, scaffolded curriculum, and assessment design across youth and adult audiences.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">◈</div>
+        <div class="expertise-name">Content Development</div>
+        <div class="expertise-desc">Transforming complex subject matter into clear, engaging, audience-ready learning experiences that drive retention.</div>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">◇</div>
+        <div class="expertise-name">Facilitation &amp; Delivery</div>
+        <div class="expertise-desc">Trauma-informed facilitation, emotional literacy programming, and interactive group learning design for diverse populations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statement-section">
+    <div class="statement-text">
+      Information delivered is not learning.<br>
+      Learning happens when the learner is <strong>moved</strong>, <strong>challenged</strong>, and <strong>met where they are</strong>.<br>
+      That is the design standard I bring to every engagement.
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="contact-block">
+      <div class="contact-label">Contact</div>
+      <div class="contact-line">Manaz Baptiste</div>
+      <div class="contact-line">646.504.4465</div>
+      <div class="contact-line">thebaptistem@gmail.com</div>
+      <div class="contact-line">linkedin.com/in/manazbaptiste</div>
+    </div>
+    <div class="footer-badge">
+      <div class="badge-text">Portfolio</div>
+      <div class="badge-year">2026</div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<div id="sample-a" class="portfolio-section">
+
+<div class="page">
+
+  <div class="doc-header">
+    <div>
+      <div class="doc-label">Portfolio Sample A &nbsp;·&nbsp; Lesson Plan</div>
+      <div class="doc-title">Banking &amp; <em>Checking Accounts</em></div>
+    </div>
+    <div class="doc-meta">
+      <div class="meta-item"><span class="meta-label">Audience</span><span class="meta-value">High School Students, Grades 9 to 12</span></div>
+      <div class="meta-item"><span class="meta-label">Subject Area</span><span class="meta-value">Financial Literacy</span></div>
+      <div class="meta-item"><span class="meta-label">Session Length</span><span class="meta-value">90 Minutes</span></div>
+      <div class="meta-item"><span class="meta-label">Modality</span><span class="meta-value">In-Person, Instructor-Led</span></div>
+    </div>
+  </div>
+
+  <div class="glance-strip">
+    <div class="glance-card"><div class="glance-label">Learning Format</div><div class="glance-value">Discussion, Simulation, Worksheet, Research</div></div>
+    <div class="glance-card"><div class="glance-label">Key Skill</div><div class="glance-value">Financial Decision-Making</div></div>
+    <div class="glance-card"><div class="glance-label">Activities</div><div class="glance-value">4 Structured, 1 Roleplay Simulation</div></div>
+    <div class="glance-card"><div class="glance-label">Assessment</div><div class="glance-value">Worksheet Completion and Group Presentation</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-num">01</span><span class="section-title">Lesson Objective</span><div class="section-rule"></div></div>
+    <div class="objective-block">
+      <div class="objective-label">Why This Lesson Matters</div>
+      <div class="objective-text">Students will learn what a checking account is, how to use one correctly, and how to compare banking options to find what works for their specific needs. They will practice filling out a check, research real bank account features, and participate in a simulation that puts them in the role of both the customer and the institution. By the end, they will be able to make an informed decision about where and how to open a checking account.</div>
+    </div>
+    <div class="targets-grid">
+      <div class="target-card"><span class="target-num">01</span><span class="target-text">Define what a checking account is and explain its purpose in managing daily money.</span></div>
+      <div class="target-card"><span class="target-num">02</span><span class="target-text">Demonstrate how to correctly fill out a check, including all required fields.</span></div>
+      <div class="target-card"><span class="target-num">03</span><span class="target-text">Compare checking account options using real-world criteria like fees, access, and overdraft policies.</span></div>
+      <div class="target-card"><span class="target-num">04</span><span class="target-text">Evaluate which banking tools best support different financial needs and habits.</span></div>
+      <div class="target-card"><span class="target-num">05</span><span class="target-text">Practice critical thinking and communication through a structured roleplay simulation.</span></div>
+      <div class="target-card"><span class="target-num">06</span><span class="target-text">Understand when a check may be more appropriate than a debit card or digital payment.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-num">02</span><span class="section-title">Questions This Lesson Answers</span><div class="section-rule"></div></div>
+    <ul class="questions-list">
+      <li><span class="q-mark">?</span>What is a checking account and how does it actually work?</li>
+      <li><span class="q-mark">?</span>How do you fill out a check without making a mistake?</li>
+      <li><span class="q-mark">?</span>What should I compare when choosing a checking account?</li>
+      <li><span class="q-mark">?</span>When is using a check smarter than using a card?</li>
+      <li><span class="q-mark">?</span>How do my spending habits influence which bank is right for me?</li>
+      <li><span class="q-mark">?</span>What questions should I ask before I open any account?</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-num">03</span><span class="section-title">Materials Required</span><div class="section-rule"></div></div>
+    <div class="materials-grid">
+      <div class="materials-card">
+        <div class="materials-cat">Printed Handouts</div>
+        <ul class="materials-list">
+          <li><span class="mat-dot">·</span>Blank Check Template, 1 per student</li>
+          <li><span class="mat-dot">·</span>Comparing Checking Accounts Activity Sheet, 4 pages</li>
+          <li><span class="mat-dot">·</span>Bank Battle Bank Profile Cards</li>
+          <li><span class="mat-dot">·</span>Bank Battle Customer Profile Cards</li>
+          <li><span class="mat-dot">·</span>Bank Battle Customer Note Sheets</li>
+        </ul>
+      </div>
+      <div class="materials-card">
+        <div class="materials-cat">Supplies and Equipment</div>
+        <ul class="materials-list">
+          <li><span class="mat-dot">·</span>Student devices for research activity</li>
+          <li><span class="mat-dot">·</span>Pens, markers, scrap paper</li>
+          <li><span class="mat-dot">·</span>Feature Cards for Bank Battle simulation</li>
+          <li><span class="mat-dot">·</span>Whiteboard or chart paper, optional</li>
+          <li><span class="mat-dot">·</span>Projector or smartboard</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-num">04</span><span class="section-title">Lesson Flow</span><div class="section-rule"></div></div>
+
+    <div class="activity">
+      <div class="activity-header">
+        <span class="activity-type">Opener</span>
+        <span class="activity-name">Warm-Up Discussion: How Do You Choose?</span>
+        <span class="activity-time">10 min</span>
+      </div>
+      <div class="activity-body">
+        <div class="activity-intro">Before introducing banking, students connect to a decision-making process they already know. This primes their thinking for the comparison activity that follows.</div>
+        <ul class="activity-steps">
+          <li>Set the frame: tell students that today's lesson is about checking accounts and how to choose the right one. Before we get there, we are going to talk about how we make any big purchase decision.</li>
+          <li>Ask students: "Say your phone broke this morning and you needed a replacement today. How would you figure out which one to get?" Let them call out answers freely. Do not redirect yet.</li>
+          <li>Bridge to banking: "That same process, comparing options, asking the right questions, looking at what matters to you personally, is exactly how you should approach picking a bank account."</li>
+        </ul>
+        <div class="instructor-note"><strong>Instructor Note</strong>Common responses will include going with the same brand, asking friends, or Googling. All of these are valid starting points. Use whatever they offer to connect to the research activity later in the session.</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-header">
+        <span class="activity-type">Direct Instruction</span>
+        <span class="activity-name">What Is a Checking Account?</span>
+        <span class="activity-time">15 min</span>
+      </div>
+      <div class="activity-body">
+        <div class="activity-intro">Students build a working understanding of what a checking account is, how money moves in and out of it, and the ways they can access their funds in real life.</div>
+        <ul class="activity-steps">
+          <li>Ask students to define a checking account in their own words before any instruction is given. Take 2 or 3 responses. Do not correct yet.</li>
+          <li>Introduce the working definition: a checking account is a bank account designed for daily transactions. It lets you deposit and withdraw money easily. It typically comes with a debit card, check access, and online banking.</li>
+          <li>Walk through the ways money can be accessed: visiting a branch, ATM withdrawal with a debit card, swiping a debit card at a store, paying online, setting up direct transfers or bill pay, using mobile payment apps like Apple Pay, Venmo, or Cash App, and writing a check.</li>
+          <li>Ask the group: "When might writing a check be better than using a card?" Discuss briefly. Common answers include paying rent, sending money by mail, or when a card is not accepted.</li>
+        </ul>
+        <div class="instructor-note"><strong>Instructor Note</strong>Some students may not have a bank account or may come from unbanked households. Keep the tone exploratory rather than assumptive. The goal is to build financial literacy from wherever each student is starting.</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-header">
+        <span class="activity-type">Hands-On Activity</span>
+        <span class="activity-name">Fill It Out: Blank Check Template</span>
+        <span class="activity-time">15 min</span>
+      </div>
+      <div class="activity-body">
+        <div class="activity-intro">Students practice completing a check correctly using a real template. This is a foundational life skill that many students have never been explicitly taught.</div>
+        <ul class="activity-steps">
+          <li>Distribute the Blank Check Template to each student.</li>
+          <li>Ask a volunteer to read the directions aloud before anyone begins writing.</li>
+          <li>Give students 8 to 10 minutes to complete the check independently. Circulate and assist as needed.</li>
+          <li>Review the answers together as a class. Walk through each field: date, payee, numerical amount, written amount, memo line, and signature. Correct common errors in real time.</li>
+        </ul>
+        <div class="instructor-note"><strong>Instructor Note</strong>The most common errors are the written dollar amount line and forgetting the memo. Walk through the amount line slowly and show students how to fill to the end of the line so nothing can be added after the fact.</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-header">
+        <span class="activity-type">Research Activity</span>
+        <span class="activity-name">Comparing Checking Accounts</span>
+        <span class="activity-time">20 min</span>
+      </div>
+      <div class="activity-body">
+        <div class="activity-intro">Students research a real bank account from a provided list, verify their findings using two sources, and present their findings to the class. This builds research habits alongside financial literacy.</div>
+        <ul class="activity-steps">
+          <li>Distribute the Comparing Checking Accounts Activity Sheet, 4 pages total.</li>
+          <li>Each student selects a bank from the list on the worksheet and uses their device to research the account features.</li>
+          <li>Students verify all information using at least two sources before recording anything.</li>
+          <li>Once complete, each student presents their findings to the class in 1 to 2 minutes.</li>
+          <li>As a group, discuss: "Based on everything we heard today, which account seems like the best fit for most of us, and why?"</li>
+        </ul>
+        <div class="instructor-note"><strong>Instructor Note</strong>Push students past the homepage. Have them find the fee disclosure page, the overdraft policy, and whether mobile deposit is available. Those are the details that reveal which accounts are actually student-friendly.</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-header">
+        <span class="activity-type">Simulation</span>
+        <span class="activity-name">Bank Battle: The Checking Account Showdown</span>
+        <span class="activity-time">25 min</span>
+      </div>
+      <div class="activity-body">
+        <div class="activity-intro">Students step into roles as banks and customers in a fast-moving simulation. Banks compete for business by showcasing their features. Customers ask informed questions and choose the account that best fits their profile. This is where the lesson comes alive.</div>
+        <ul class="activity-steps">
+          <li>Divide the class in half. One half becomes banks. The other half becomes customers.</li>
+          <li>Distribute materials: banks receive a Bank Profile Sheet and 4 to 5 Feature Cards to display. Customers receive a Customer Profile Card and a Note Sheet to compare banks.</li>
+          <li>Set expectations: banks set up like a career fair and highlight their strongest features. Customers move around the room, visit at least three banks, and take notes at each stop.</li>
+          <li>Rotation rounds: customers spend 3 minutes at each bank. They ask questions like "What are your monthly fees?", "Do you offer mobile deposit?", and "What happens if I overdraft?" Banks answer based on their profile cards only.</li>
+          <li>After rotations, each customer chooses their bank and explains their decision to the group.</li>
+        </ul>
+        <div class="scenario-grid">
+          <div class="scenario-card">
+            <div class="scenario-label">Sample Customer Profile</div>
+            <div class="scenario-text">Jordan works part-time and gets paid every two weeks. She needs mobile deposit, low or no fees, and overdraft protection. She almost never visits a physical branch.</div>
+          </div>
+          <div class="scenario-card">
+            <div class="scenario-label">Sample Debrief Prompt</div>
+            <div class="scenario-text">What made you choose that bank? Was there one feature that was a dealbreaker? Did anything surprise you about what different banks actually offer?</div>
+          </div>
+        </div>
+        <div class="instructor-note"><strong>Instructor Note</strong>Remind students they are choosing for their customer profile, not for themselves personally. This is an important distinction. It builds the habit of evaluating options based on need rather than brand recognition or what a friend or family member uses.</div>
+        <ul class="discussion-questions">
+          <li><span class="dq-icon">›</span>What feature mattered most to your customer? Did any bank deliver on it?</li>
+          <li><span class="dq-icon">›</span>Was there anything a bank offered that you did not think to ask about?</li>
+          <li><span class="dq-icon">›</span>How would your choice change if your customer profile were different?</li>
+          <li><span class="dq-icon">›</span>What questions do you wish you had asked during the rotation?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="activity-header">
+        <span class="activity-type">Closing</span>
+        <span class="activity-name">Wrap-Up and Transfer</span>
+        <span class="activity-time">5 min</span>
+      </div>
+      <div class="activity-body">
+        <div class="activity-intro">Students consolidate what they learned and connect it to the broader skill of comparing options before making any major financial decision.</div>
+        <ul class="activity-steps">
+          <li>Recap the session: today students learned how to fill out a check, what a checking account is and how to access money from one, how to research and compare accounts using real criteria, and how to ask the right questions when evaluating any financial product.</li>
+          <li>Close with two questions for open discussion: "What other financial decisions in your life would benefit from this same comparison process?" and "After today, what is one thing you would do differently before opening any bank account?"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="section-num">05</span><span class="section-title">Measurable Outcomes</span><div class="section-rule"></div></div>
+    <div class="outcomes-block">
+      <div class="outcomes-label">What Success Looks Like at the End of This Session</div>
+      <div class="outcomes-grid">
+        <div class="outcome-item">
+          <div class="outcome-metric">100%</div>
+          <div class="outcome-desc">Students complete a check template with all required fields filled in correctly.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-metric">3+</div>
+          <div class="outcome-desc">Banks researched and compared per student before making a decision in the simulation.</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-metric">1</div>
+          <div class="outcome-desc">Bank selected per customer with a clear, stated rationale grounded in the customer's profile needs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-footer">
+    <span class="footer-credit">Manaz Baptiste &nbsp;·&nbsp; Learning Design Portfolio &nbsp;·&nbsp; 2026</span>
+    <span class="footer-id">Sample A &nbsp;·&nbsp; Lesson Plan</span>
+  </div>
+
+</div>
+
+</div>
+
+<div id="sample-b" class="portfolio-section">
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="doc-header">
+    <div>
+      <div class="doc-label">Portfolio Sample B &nbsp;·&nbsp; eLearning Storyboard</div>
+      <div class="doc-title">Turning a No Into <em>a Not Yet</em></div>
+    </div>
+    <div class="doc-meta">
+      <div class="meta-item"><span class="meta-label">Audience</span><span class="meta-value">Sales Associates, Entry to Mid-Level</span></div>
+      <div class="meta-item"><span class="meta-label">Format</span><span class="meta-value">eLearning, Self-Paced with Branching</span></div>
+      <div class="meta-item"><span class="meta-label">Total Runtime</span><span class="meta-value">Approximately 20 Minutes</span></div>
+      <div class="meta-item"><span class="meta-label">Slides</span><span class="meta-value">8 Slides Including Knowledge Check</span></div>
+    </div>
+  </div>
+
+  <!-- At a Glance -->
+  <div class="glance-strip">
+    <div class="glance-card"><div class="glance-label">Modality</div><div class="glance-value">eLearning with Branching Scenario</div></div>
+    <div class="glance-card"><div class="glance-label">Interaction Type</div><div class="glance-value">Scenario Choice, Reflection, Knowledge Check</div></div>
+    <div class="glance-card"><div class="glance-label">Skill Category</div><div class="glance-value">Sales Communication and Objection Handling</div></div>
+    <div class="glance-card"><div class="glance-label">Assessment</div><div class="glance-value">Branching Feedback and 3-Question Quiz</div></div>
+  </div>
+
+  <!-- Section 1: Overview -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">01</span><span class="section-title">Module Overview</span><div class="section-rule"></div></div>
+    <div class="overview-block">
+      <div class="overview-label">What This Module Does</div>
+      <div class="overview-text">A "no" from a customer is not the end of a conversation. It is information. This module teaches sales associates how to hear a customer's objection clearly, respond with confidence rather than pressure, and keep the relationship open for what comes next. Learners work through a realistic customer scenario, make choices in the moment, receive immediate feedback, and leave with a three-step framework they can use the same day.</div>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card"><span class="obj-num">01</span><span class="obj-text">Recognize the difference between a hard <em>no</em> and a <em>not yet</em> in a customer conversation.</span></div>
+      <div class="obj-card"><span class="obj-num">02</span><span class="obj-text">Apply the three-step <em>Not Yet Framework</em> to respond to objections without pressure.</span></div>
+      <div class="obj-card"><span class="obj-num">03</span><span class="obj-text">Choose responses in a branching scenario that keep the customer relationship intact.</span></div>
+      <div class="obj-card"><span class="obj-num">04</span><span class="obj-text">Identify what follow-up actions signal professionalism and build long-term trust.</span></div>
+    </div>
+  </div>
+
+  <!-- Section 2: Storyboard -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">02</span><span class="section-title">Slide-by-Slide Storyboard</span><div class="section-rule"></div></div>
+
+    <!-- SLIDE 1 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">01</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Title / Hook</div><div class="slide-title">Turning a No Into a Not Yet</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">1 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <p>Full-screen headline: <em>"The customer just said no. Now what?"</em></p>
+            <p>Subhead: <em>"What you do in the next 30 seconds determines whether you lose the sale or simply delay it."</em></p>
+            <p>Single call-to-action button: <strong>Start</strong></p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p>"Every sales associate hears no. The ones who build lasting customer relationships know something the others don't: most no's are not permanent. They're a pause. In this module, you'll learn how to hear that pause, respond with confidence, and keep the door open. Let's get into it."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Visual</span>Split-screen: left side shows a deflated sales associate; right side shows the same associate calm and composed. Clean, minimal. Dark background with warm accent type.</div>
+            <div class="visual-box"><span class="visual-label">Audio</span>Subtle ambient sound fades in. Voiceover begins at 3 seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">02</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Concept Introduction</div><div class="slide-title">No Is Not the End. It's Data.</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">2 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <p>Three labeled cards appear one at a time:</p>
+            <ul>
+              <li><span class="li-dot">·</span>"I'm not ready right now." — timing objection</li>
+              <li><span class="li-dot">·</span>"That's more than I planned to spend." — budget objection</li>
+              <li><span class="li-dot">·</span>"I need to think about it." — confidence objection</li>
+            </ul>
+            <p style="margin-top:10px;">Below: <em>"Each of these is a not yet. Each one tells you something."</em></p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p>"When a customer says no, they're usually telling you one of three things: the timing is off, the price feels like a risk, or they don't feel confident enough yet. None of those are a closed door. They're clues. Your job is to hear which one it is and respond to that, not to the word no."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Animation</span>Cards animate in one at a time on click or timed 2-second intervals. Each card pulses briefly when it appears.</div>
+            <div class="visual-box"><span class="visual-label">Design Note</span>Use icon + label pairing. Clock icon for timing, dollar icon for budget, question mark for confidence. Keep it clean, no clutter.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">03</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Framework Introduction</div><div class="slide-title">The Not Yet Framework</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">2 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <p>Three-step visual sequence:</p>
+            <ul>
+              <li><span class="li-dot">01</span><div><strong>Acknowledge.</strong> Validate what the customer said without agreeing that it's over.</div></li>
+              <li><span class="li-dot">02</span><div><strong>Clarify.</strong> Ask one question to understand the real reason behind the <em>no</em>.</div></li>
+              <li><span class="li-dot">03</span><div><strong>Offer a path.</strong> Propose one next step that removes pressure and keeps the relationship open.</div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p>"The <em>Not Yet Framework</em> has three steps. <strong>First,</strong> acknowledge what the customer said. Not in a way that concedes the sale, but in a way that shows you heard them. <strong>Second,</strong> ask one clarifying question. One. Not a list. Find out what's actually underneath the <em>no</em>. <strong>Third,</strong> offer a path forward that removes pressure. You're not pushing. You're opening a door."</p>          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Animation</span>Three steps build sequentially. Each step number animates in with a brief color highlight before settling. Step text appears after the number.</div>
+            <div class="visual-box"><span class="visual-label">Design Note</span>Framework should feel like a tool, not a lecture. Consider a horizontal progression arrow connecting the three steps.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">04</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Scenario Setup</div><div class="slide-title">Meet the Customer: Marcus</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">1 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <p>Customer profile card:</p>
+            <ul>
+              <li><span class="li-dot">·</span><strong>Name:</strong> Marcus</li>
+              <li><span class="li-dot">·</span><strong>Situation:</strong> Browsing a furniture showroom, considering a living room set</li>
+              <li><span class="li-dot">·</span><strong>Budget:</strong> Has not shared one</li>
+              <li><span class="li-dot">·</span><strong>Body language:</strong> Engaged, asking questions, but hesitating at the price tag</li>
+            </ul>
+            <p style="margin-top:10px;font-style:italic;">"I appreciate the time, but I don't think this is going to work for me right now."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p>"This is Marcus. He came in asking questions, he's been engaged for the last 15 minutes, and now he's pulling back. He just told you it's not going to work for him right now. You have a choice about what you do next. Let's see how you handle it."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Visual</span>Illustrated customer profile card. Neutral illustrated character, not a photo. Warm showroom background. Marcus's dialogue appears in a speech bubble, slightly stylized.</div>
+            <div class="visual-box"><span class="visual-label">Transition</span>Pause 1 second after voiceover ends before advancing to the branching slide.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">05</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Branching Scenario</div><div class="slide-title">What Do You Say Next?</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">3 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <span class="interaction-tag">Choose Your Response</span>
+            <p>Marcus says: <em>"I appreciate the time, but I don't think this is going to work for me right now."</em></p>
+            <p style="margin-top:10px;">Learner selects one of three responses:</p>
+            <div class="branch-grid">
+              <div class="branch-option branch-a">
+                <span class="branch-label">Option A</span>
+                "I completely understand. Is it the price, or is the timing just not right? I'd love to find something that works for you."
+              </div>
+              <div class="branch-option branch-b">
+                <span class="branch-label wrong">Option B</span>
+                "We do have a payment plan if that helps. And this set is only available at this price for two more days."
+              </div>
+            </div>
+            <div style="margin-top:2px;" class="branch-option branch-b">
+              <span class="branch-label wrong">Option C</span>
+              "No problem at all. Here's my card if you change your mind."
+            </div>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p>"Marcus just gave you a not yet. You have three choices. Think about what you learned in the framework. Which response acknowledges what he said, clarifies the real objection, and offers a path forward without pressure? Choose one."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Interaction</span>Three clickable response tiles. On hover, each tile highlights. On selection, the module branches to the appropriate feedback slide.</div>
+            <div class="visual-box"><span class="visual-label">Design Note</span>Do not label options as correct or incorrect before selection. Let the learner commit to a choice before receiving feedback.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">06</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Branching Feedback</div><div class="slide-title">Here's What That Response Did</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">2 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <p><strong>If Option A selected (correct):</strong></p>
+            <div class="branch-option branch-a" style="margin-bottom:10px;">You acknowledged Marcus without conceding the sale, then asked one clarifying question. That is the framework in action. Marcus now has space to tell you what's actually going on. Well done.</div>
+            <p><strong>If Option B selected:</strong></p>
+            <div class="branch-option branch-b" style="margin-bottom:10px;">You moved to urgency and payment plans before understanding the real objection. Marcus may feel pressured. That response skipped the clarify step entirely.</div>
+            <p><strong>If Option C selected:</strong></p>
+            <div class="branch-option branch-b">You were polite but you closed the door yourself. Handing over a card with no follow-up question signals you accepted the no. Try again.</div>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p><em>For Option A:</em> "That's the Not Yet Framework. You heard Marcus, you didn't panic, and you asked the one question that opens the conversation back up. That's what a not yet response looks like."</p>
+            <p style="margin-top:10px;"><em>For Options B and C:</em> "Let's look at what happened there and why it matters. Then we'll give you a chance to try again."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Feedback Design</span>Correct response: green accent border, checkmark icon, warm encouraging tone. Incorrect: amber accent border, no harsh red, constructive language only. Retry button appears for incorrect selections.</div>
+            <div class="visual-box"><span class="visual-label">Branching Logic</span>Correct path advances to Slide 7. Incorrect paths loop back to Slide 5 with a brief hint visible on the response tiles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">07</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Application</div><div class="slide-title">Putting the Framework to Work</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">3 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col">
+          <span class="col-label">On-Screen Content</span>
+          <div class="col-content">
+            <p>Three real-world objection examples with the framework applied to each:</p>
+            <ul>
+              <li style="flex-direction:column; gap:4px; padding:10px 0;">
+                <div><strong><em>"I need to think about it."</em></strong></div>
+                <div style="font-size:12px; color:#555;">Acknowledge: "Of course, this is a real decision." &nbsp;|&nbsp; Clarify: "Is there a specific part you're still weighing?" &nbsp;|&nbsp; Offer: "I can put together a summary so you have something to reference."</div>
+              </li>
+              <li style="flex-direction:column; gap:4px; padding:10px 0;">
+                <div><strong><em>"That's out of my budget."</em></strong></div>
+                <div style="font-size:12px; color:#555;">Acknowledge: "I hear you." &nbsp;|&nbsp; Clarify: "What range were you working with?" &nbsp;|&nbsp; Offer: "Let me show you a few options that might get you closer."</div>
+              </li>
+              <li style="flex-direction:column; gap:4px; padding:10px 0;">
+                <div><strong><em>"I'm not ready yet."</em></strong></div>
+                <div style="font-size:12px; color:#555;">Acknowledge: "No rush at all." &nbsp;|&nbsp; Clarify: "Is there a timeline you're working toward?" &nbsp;|&nbsp; Offer: "I'll make a note and follow up when the timing makes more sense."</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Voiceover Script</span>
+          <div class="col-content">
+            <p>"Here is how the framework sounds in three common situations. Each one starts the same way: acknowledge first, ask one question second, offer a path third. Notice that none of these responses push. They create space for the customer to keep talking. That is the difference between a lost sale and a delayed one."</p>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Visual Direction</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Animation</span>Each objection example builds on click. First the customer statement, then the three-step response unfolds beneath it. Learner controls the pace.</div>
+            <div class="visual-box"><span class="visual-label">Design Note</span>Use a consistent visual structure for each example so the pattern becomes familiar. Consistency here reinforces the framework.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8 -->
+    <div class="slide-card">
+      <div class="slide-header">
+        <div class="slide-num-block"><div class="slide-num-label">Slide</div><div class="slide-num-value">08</div></div>
+        <div class="slide-title-block"><div class="slide-type-tag">Knowledge Check</div><div class="slide-title">Let's See What You've Got</div></div>
+        <div class="slide-time-block"><div class="slide-time-label">Time</div><div class="slide-time-value">3 min</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-col" style="grid-column: span 2;">
+          <span class="col-label">Questions</span>
+          <div class="col-content">
+            <div class="kc-question"><strong>1)</strong> A customer says "I just need more time to think." According to the <em>Not Yet Framework</em>, what should your first response be?</div>
+            <ul class="kc-options">
+              <li><span class="kc-letter">A</span>Tell them about the current promotion so they feel motivated to decide now.</li>
+              <li class="correct"><span class="kc-letter">B</span>Acknowledge what they said, then ask one question to understand what they're still weighing.</li>
+              <li><span class="kc-letter">C</span>Give them your card and let them reach out when they're ready.</li>
+            </ul>
+
+            <div class="kc-question" style="margin-top:16px;"><strong>2)</strong> Which of the following is the correct order of the <em>Not Yet Framework</em>?</div>
+            <ul class="kc-options">
+              <li><span class="kc-letter">A</span>Offer a path, clarify the objection, then acknowledge the customer.</li>
+              <li><span class="kc-letter">B</span>Clarify the objection, acknowledge the customer, then offer a path.</li>
+              <li class="correct"><span class="kc-letter">C</span>Acknowledge, clarify, offer a path.</li>
+            </ul>
+
+            <div class="kc-question" style="margin-top:16px;"><strong>3)</strong> A customer says "That's more than I was planning to spend." What is the most effective clarifying question?</div>
+            <ul class="kc-options">
+              <li><span class="kc-letter">A</span>"We do have financing available. Would that help?"</li>
+              <li><span class="kc-letter">B</span>"This is actually one of our best values at this price point."</li>
+              <li class="correct"><span class="kc-letter">C</span>"What range were you working with? I'd like to see what we can do."</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-col">
+          <span class="col-label">Design Notes</span>
+          <div class="col-content">
+            <div class="visual-box"><span class="visual-label">Feedback</span>Immediate feedback on each question. Correct answers highlighted in sage green. Incorrect selections show the correct answer with a brief explanation before advancing.</div>
+            <div class="visual-box"><span class="visual-label">Scoring</span>Score displayed at end: 3 of 3 advances to completion screen. Below 3 of 3 offers a review of the framework before retaking.</div>
+            <div class="visual-box"><span class="visual-label">Completion</span>Final screen: "You've got the framework. Now use it." Simple, direct. Option to download a one-page reference card.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Section 3: Outcomes -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">03</span><span class="section-title">Measurable Outcomes</span><div class="section-rule"></div></div>
+    <div class="outcomes-block">
+      <div class="outcomes-label">What Success Looks Like at Module Completion</div>
+      <div class="outcomes-grid">
+        <div>
+          <div class="outcome-metric">100%</div>
+          <div class="outcome-desc">Learners complete the branching scenario and receive feedback on their response before advancing.</div>
+        </div>
+        <div>
+          <div class="outcome-metric">3/3</div>
+          <div class="outcome-desc">Knowledge check score required to advance. Learners who score below are routed to framework review.</div>
+        </div>
+        <div>
+          <div class="outcome-metric">1</div>
+          <div class="outcome-desc">Practical framework learned and reinforced through scenario, application, and assessment in a single module.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-footer">
+    <span class="footer-credit">Manaz Baptiste &nbsp;·&nbsp; Learning Design Portfolio &nbsp;·&nbsp; 2026</span>
+    <span class="footer-id">Sample B &nbsp;·&nbsp; eLearning Storyboard</span>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.portfolio-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>
